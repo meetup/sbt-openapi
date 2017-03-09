@@ -40,13 +40,13 @@ object Plugin extends sbt.Plugin {
       cachedCompile((srcDir ** fileFilter).get.toSet).toSeq
     },
     listGenerators := {
-      val it = getCodegenServiceLoader.iterator()
+      val it = getConfigServiceLoader.iterator()
       val sb = new StringBuilder("")
       while (it.hasNext) {
         if (sb.nonEmpty) sb.append(", ")
         sb.append(it.next().getName)
       }
-      println(s"Available generators: ${sb.result()}")
+      streams.value.log.info(sb.result())
     }
   )) ++ Seq[Setting[_]](
     sourceGenerators in Compile += (generate in openapiConfig).taskValue,
@@ -55,7 +55,7 @@ object Plugin extends sbt.Plugin {
     ivyConfigurations += openapiConfig
   )
 
-  private def getCodegenServiceLoader: ServiceLoader[CodegenConfig] = {
+  private def getConfigServiceLoader: ServiceLoader[CodegenConfig] = {
     val cls = classOf[CodegenConfig]
     ServiceLoader.load(cls, cls.getClassLoader)
   }
@@ -71,7 +71,7 @@ object Plugin extends sbt.Plugin {
    * instances for a config by the given name.
    */
   private def resolveConfigFromName(name: String): Option[CodegenConfig] = {
-    val it = getCodegenServiceLoader.iterator()
+    val it = getConfigServiceLoader.iterator()
 
       @tailrec def loop(): Option[CodegenConfig] = {
         if (it.hasNext) {
@@ -90,9 +90,13 @@ object Plugin extends sbt.Plugin {
     val configurator = new CodegenConfigurator()
     configurator.setVerbose(false)
 
+    /* The `inputSpec` within the configurator can be a stringified URI.
+       However it seems if you pass it a file:/ URI, it fails because it tests
+       for a prefix of "file://". Therefore if we're dealing with a file URI,
+       we stringify it to conform to that expectation. */
     val specLocation =
       openapiSpec.toString match {
-        case file if file.toLowerCase.startsWith("file:") => "file:///" + file.substring(6) // TODO explain
+        case file if file.toLowerCase.startsWith("file:") => "file:///" + file.substring(6)
         case x => x
       }
 
