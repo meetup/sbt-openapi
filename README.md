@@ -19,7 +19,7 @@ addSbtPlugin("com.meetup" % "sbt-swagger" % "{pluginVersion}" ) // TODO
 Add the following code to your `build.sbt` file:
 
 ```
-seq( com.meetup.sbtopenapi.Plugin.openapiSettings : _*)
+com.meetup.sbtopenapi.Plugin.openapiSettings
 ```
 
 ### Use the plugin
