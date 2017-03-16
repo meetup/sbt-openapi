@@ -11,3 +11,7 @@ sbtPlugin := true
 scalaVersion := appConfiguration.value.provider.scalaProvider.version
 
 libraryDependencies += "io.swagger" % "swagger-codegen" % "2.2.1"
+
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+
+bintrayOrganization in ThisBuild := Some("meetup")
