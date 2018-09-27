@@ -10,7 +10,7 @@ sbtPlugin := true
 
 scalaVersion := appConfiguration.value.provider.scalaProvider.version
 
-libraryDependencies += "io.swagger" % "swagger-codegen" % "2.2.1"
+libraryDependencies += "io.swagger" % "swagger-codegen" % "2.3.1"
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
