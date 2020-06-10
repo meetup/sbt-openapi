@@ -1,5 +1,4 @@
 # sbt-openapi
-[![Build Status](https://api.travis-ci.org/meetup/sbt-openapi.svg?branch=master)](https://travis-ci.org/meetup/sbt-openapi)
 
 ## Overview
 
