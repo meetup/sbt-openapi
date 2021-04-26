@@ -1,4 +1,4 @@
-BUILDER_TAG = "meetup/sbt-builder:0.1.5"
+BUILDER_TAG = "ghcr.io/meetup/sbt-builder:0.3.17"
 
 CI_BUILD_NUMBER ?= $(USER)-SNAPSHOT
 CI_IVY_CACHE ?= $(HOME)/.ivy2
