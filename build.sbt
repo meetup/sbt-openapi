@@ -14,4 +14,6 @@ libraryDependencies += "io.swagger" % "swagger-codegen" % "2.4.19"
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-bintrayOrganization in ThisBuild := Some("meetup")
+ThisBuild / githubOwner := "meetup"
+ThisBuild / githubRepository := "meetup-oss"
+ThisBuild / githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
