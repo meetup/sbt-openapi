@@ -1,8 +1,5 @@
-enablePlugins(CommonSettingsPlugin)
-
-name := "sbt-openapi"
-
 organization := "com.meetup"
+name := "sbt-openapi"
 
 description := "Plugin for generating managed code from OpenAPI specifications"
 
@@ -14,6 +11,6 @@ libraryDependencies += "io.swagger" % "swagger-codegen" % "2.4.19"
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
-ThisBuild / githubOwner := "meetup"
-ThisBuild / githubRepository := "meetup-oss"
-ThisBuild / githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
+
+// Add the default sonatype repository setting
+publishTo := sonatypePublishTo.value

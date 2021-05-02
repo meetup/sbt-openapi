@@ -1,8 +1,2 @@
-resolvers +=  Resolver.url(
-  "meetup-sbt-plugins",
-  new java.net.URL("https://dl.bintray.com/meetup/sbt-plugins/")
-)(Resolver.ivyStylePatterns)
-
-addSbtPlugin("com.meetup" % "sbt-plugins" % "0.3.38")
-
-addSbtPlugin("com.codecommit" % "sbt-github-packages" % "0.5.2")
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "2.3")
+addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.0")
