@@ -21,3 +21,5 @@ project/plugins/project/
 *.sublime-project
 *.sublime-workspace
 *~
+
+sbt.json
